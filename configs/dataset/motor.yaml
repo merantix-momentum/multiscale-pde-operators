@@ -1,0 +1,5 @@
+name: motor
+catalog_key: MotorDataset
+statistics:
+  mean: 2.341564977335156
+  std: 1.2838078366260168

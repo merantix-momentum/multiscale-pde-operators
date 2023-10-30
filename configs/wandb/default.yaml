@@ -1,0 +1,6 @@
+project: multiscale-operator
+tags: [mso, training, '${dataset.name}']
+job_type: train
+group: ${dataset.name}
+name: ${now:%Y_%m_%d_%H_%M_%S}
+mode: disabled

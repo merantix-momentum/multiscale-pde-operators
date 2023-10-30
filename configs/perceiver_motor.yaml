@@ -1,0 +1,30 @@
+defaults:
+  - _train
+  - _self_
+  - dataset: motor 
+
+model_cfg:
+  operator:
+    _target_: multiscale_operator.operators.perceiver.PerceiverOperator
+    d_latents: 128
+    d_model: 64
+  mlp_hidden_dims: 64
+  output_channels: 1
+  mlp_decoder: true
+
+data_transform:
+  _target_: multiscale_operator.transforms.chain_transforms.ChainedTransforms
+  transforms:
+    - _target_: multiscale_operator.transforms.normalisation_transform.NormaliseTransform
+      mean: ${dataset.statistics.mean}
+      std: ${dataset.statistics.std}
+
+train_cfg:
+  batch_size: 8
+  accumulate_grad_batches: 2
+
+wandb:
+  group: final_perceiver_${dataset.name}
+  tags: [perceiver, final, '${dataset.name}']
+
+plot_every_n_batches: 6  # = 3*16

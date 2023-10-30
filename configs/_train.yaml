@@ -1,0 +1,20 @@
+defaults:
+  - hydra: default  # Load default hydra settings
+  - wandb: default  # Load default wandb settings
+
+train_cfg:
+  seed:
+  learning_rate: 0.001
+  batch_size: 1
+  num_epochs: 200
+  num_workers: 8
+  log_every_n_steps: 50
+  check_val_every_n_epoch: 3
+  accumulate_grad_batches: 1
+  
+test_cfg:
+  batch_size: 1
+
+test_overfitting: false
+data_transform:
+plot_every_n_batches: 100

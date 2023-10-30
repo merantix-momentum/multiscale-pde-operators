@@ -1,0 +1,33 @@
+defaults:
+  - _train
+  - _self_
+  - dataset: motor 
+
+model_cfg:
+  operator:
+    _target_: multiscale_operator.operators.mesh_graph_net.EncoderProcessorDecoder
+    num_message_passing: 15
+    hidden_size: 64
+
+data_transform:
+  _target_: multiscale_operator.transforms.chain_transforms.ChainedTransforms
+  transforms:
+    - _target_: multiscale_operator.transforms.normalisation_transform.NormaliseTransform
+      mean: ${dataset.statistics.mean}
+      std: ${dataset.statistics.std}
+    - _target_: multiscale_operator.transforms.tree_op_transform.TreeOpTransform
+      k_hop_levels: 3
+      n_levels: 10
+      k_neighbors: 8
+    - _target_: multiscale_operator.transforms.relative_position.RelativePositionTransform
+    - _target_: multiscale_operator.transforms.absolute_position.AbsolutePositionTransform
+
+train_cfg:
+  batch_size: 1
+  accumulate_grad_batches: 16
+
+wandb:
+  group: final_deeptree_${dataset.name}
+  tags: [deeptree, final, '${dataset.name}']
+
+plot_every_n_batches: 48  # = 3*16

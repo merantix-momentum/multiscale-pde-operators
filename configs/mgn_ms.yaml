@@ -1,0 +1,25 @@
+defaults:
+  - _train
+  - _self_
+  - dataset: magnetostatics
+
+model_cfg:
+  operator:
+    _target_: multiscale_operator.operators.mesh_graph_net.EncoderProcessorDecoder
+    num_message_passing: 15
+    hidden_size: 64
+
+data_transform:
+  _target_: multiscale_operator.transforms.chain_transforms.ChainedTransforms
+  transforms:
+    - _target_: multiscale_operator.transforms.relative_position.RelativePositionTransform
+
+train_cfg:
+  batch_size: 48
+  accumulate_grad_batches: 1
+
+wandb:
+  group: final_deepmind_${dataset.name}
+  tags: [deepmind, final, '${dataset.name}']
+
+plot_every_n_batches: 1  # = 3*16

@@ -1,0 +1,25 @@
+defaults:
+  - _train
+  - _self_
+  - dataset: magnetostatics
+
+model_cfg:
+  operator:
+    _target_: multiscale_operator.operators.perceiver.PerceiverOperator
+    d_latents: 128
+    d_model: 64
+  mlp_hidden_dims: 64
+  output_channels: 1
+  mlp_decoder: true
+
+data_transform:
+
+train_cfg:
+  batch_size: 48
+  accumulate_grad_batches: 1
+
+wandb:
+  group: final_perceiver_${dataset.name}
+  tags: [perceiver, final, '${dataset.name}']
+
+plot_every_n_batches: 1  # = 3*16

@@ -1,0 +1,7 @@
+output_subdir: # prevents hydra from creating a .hydra dir
+run:
+  dir: ./.hydra # prevents hydra from changing directory
+sweep:
+  dir: ./.hydra-sweep
+  subdir: .
+verbose: [__main__] # Tell hydra to put the logger for our code to DEBUG

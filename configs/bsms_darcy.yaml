@@ -1,0 +1,31 @@
+defaults:
+  - _train
+  - _self_
+  - dataset: darcy
+  
+bsms_layer_num: 5
+model_cfg:
+  operator:
+    _target_: multiscale_operator.operators.bsms.BSMSOperator
+    layer_num: ${bsms_layer_num}
+    n_mp: 2
+
+data_transform:
+  _target_: multiscale_operator.transforms.chain_transforms.ChainedTransforms
+  transforms:
+    - _target_: multiscale_operator.transforms.normalisation_transform.NormaliseTransform
+      mean: ${dataset.statistics.mean}
+      std: ${dataset.statistics.std}
+    - _target_: multiscale_operator.transforms.distance_border.DistanceBorderTransform
+    - _target_: multiscale_operator.transforms.bsms_transform.BSMSTransform
+      layer_num: ${bsms_layer_num}
+
+train_cfg:
+  batch_size: 2
+  accumulate_grad_batches: 8
+
+wandb:
+  group: final_bsms_${dataset.name}
+  tags: [bsms, final, '${dataset.name}']
+
+plot_every_n_batches: 24  # = (3*16) -> virtual batch size

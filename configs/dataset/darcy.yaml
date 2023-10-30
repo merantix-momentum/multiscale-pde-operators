@@ -1,0 +1,5 @@
+name: darcy
+catalog_key: DarcyDataset
+statistics:
+  mean: 0.54166234
+  std: 0.449923

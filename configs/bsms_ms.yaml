@@ -1,0 +1,28 @@
+defaults:
+  - _train
+  - _self_
+  - dataset: magnetostatics
+  
+bsms_layer_num: 5
+model_cfg:
+  operator:
+    _target_: multiscale_operator.operators.bsms.BSMSOperator
+    layer_num: ${bsms_layer_num}
+    n_mp: 2
+
+data_transform:
+  _target_: multiscale_operator.transforms.chain_transforms.ChainedTransforms
+  transforms:
+    - _target_: multiscale_operator.transforms.bsms_transform.BSMSTransform
+      layer_num: ${bsms_layer_num}
+      seed_heuristic: min_ave
+
+train_cfg:
+  batch_size: 1
+  accumulate_grad_batches: 1
+
+wandb:
+  group: final_bsms_${dataset.name}
+  tags: [bsms, final, '${dataset.name}']
+
+plot_every_n_batches: 1  # = (3*16) -> virtual batch size

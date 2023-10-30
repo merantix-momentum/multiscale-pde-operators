@@ -1,0 +1,22 @@
+# note that you need to install mkl via conda
+# conda install mkl
+
+omegaconf>=2.3.0
+squirrel-core
+torch>=2.0.0
+pytorch-lightning>=2.0
+torch_geometric
+gdown
+matplotlib
+hydra-core
+python-dotenv
+flatten-dict
+wandb
+h5py
+torch-cluster
+yacs
+torch_scatter
+sparse_dot_mkl
+gcsfs
+nvitop
+transformers>=4.31.0
