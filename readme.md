@@ -1,4 +1,25 @@
-## Multiscale Operator for Solving Static PDEs
+<div align="center"> 
+
+# Multiscale Neural Operators for Solving Time-Independent PDEs
+
+</div>
+
+**TL;DR:** We study how to solve time-independent Partial Differential Equations on large meshes and introduce a novel graph rewiring technique for this.
+
+# 
+
+> [**Multiscale Neural Operators for Solving Time-Independent PDEs**](link)
+>
+> by Winfried Ripken<sup>1</sup> \*, Lisa Coiffard<sup>1</sup> \*, Felix Pieper<sup>1</sup> \* and Sebastian Dziadzio<sup>2</sup>.
+> 
+> <sup>1</sup> [Merantix Momentum](https://en.merantix-momentum.com), <sup>2</sup> [Tübingen AI Center](https://tuebingen.ai).
+> 
+> (\*) equal contribution.
+<br>
+
+#
+
+### Requirement
 
 - Run ```pip install -e .``` and ```pip install -r requirements.txt``` in root folder before using.
 - Install gcloud CLI and authenticate:
@@ -13,11 +34,15 @@ We recommend installing our repository using
 ```
 pip install . -e
 ```
+### Training
 
 Start training run:
 ```
 python -m multiscale_operator.model.trainer --config-name={config_name}
 ```
+
+
+## Acknowledgement
 
 We integrated 3 datasets:
 - Darcy Flow in 2D
