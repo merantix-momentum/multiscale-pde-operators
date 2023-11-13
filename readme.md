@@ -8,7 +8,7 @@
 
 # 
 
-> [**Multiscale Neural Operators for Solving Time-Independent PDEs**](link)
+> [**Multiscale Neural Operators for Solving Time-Independent PDEs**](https://arxiv.org/abs/2311.05964)
 >
 > by Winfried Ripken<sup>1</sup> \*, Lisa Coiffard<sup>1</sup> \*, Felix Pieper<sup>1</sup> \* and Sebastian Dziadzio<sup>2</sup>.
 > 
